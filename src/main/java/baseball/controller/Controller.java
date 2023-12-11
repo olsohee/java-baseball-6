@@ -25,6 +25,8 @@ public class Controller {
         outputView.printStartMessage();
         service.createAnswerBalls();
         readNumber();
+        service.getResult();
+        outputView.printResult(service.getResultDto());
     }
 
     private void readNumber() {

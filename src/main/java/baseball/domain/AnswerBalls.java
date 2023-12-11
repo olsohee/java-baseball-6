@@ -14,4 +14,29 @@ public class AnswerBalls {
                 .map(number -> new Ball(number))
                 .toList();
     }
+
+    public int calculateStrike(List<Ball> userBalls) {
+        int strikeCount = 0;
+        for (int i = 0; i < userBalls.size(); i++) {
+            if (answerBalls.get(i) == userBalls.get(i)) {
+                strikeCount++;
+            }
+        }
+        return strikeCount;
+    }
+
+    public int calculateBall(List<Ball> userBalls) {
+        int ballCount = 0;
+        for (int i = 0; i < userBalls.size(); i++) {
+            for (int j = 0; j < userBalls.size(); j++) {
+                if (i == j) {
+                    continue;
+                }
+                if (answerBalls.get(i) == userBalls.get(j)) {
+                    ballCount++;
+                }
+            }
+        }
+        return ballCount;
+    }
 }

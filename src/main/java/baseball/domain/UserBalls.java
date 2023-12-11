@@ -44,4 +44,8 @@ public class UserBalls {
             }
         }
     }
+
+    public List<Ball> getUserBalls() {
+        return userBalls;
+    }
 }

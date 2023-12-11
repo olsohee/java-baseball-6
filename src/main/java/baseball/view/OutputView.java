@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.dto.ResultDto;
 import baseball.message.OutputMessage;
 
 public class OutputView {
@@ -18,5 +19,22 @@ public class OutputView {
 
     public void printStartMessage() {
         System.out.println(OutputMessage.START_MESSAGE.getMessage());
+    }
+
+    public void printResult(ResultDto resultDto) {
+        if (resultDto.getStrikeCount() == 0 && resultDto.getBallCount() == 0) {
+            System.out.println(OutputMessage.NOTHING.getMessage());
+            return;
+        }
+        if (resultDto.getStrikeCount() == 0) {
+            System.out.println(String.format(OutputMessage.BALL.getMessage(), resultDto.getBallCount()));
+            return;
+        }
+        if (resultDto.getBallCount() == 0) {
+            System.out.println(String.format(OutputMessage.STRIKE.getMessage(), resultDto.getStrikeCount()));
+            return;
+        }
+        System.out.print(String.format(OutputMessage.BALL.getMessage(), resultDto.getBallCount()) + " ");
+        System.out.println(String.format(String.format(OutputMessage.STRIKE.getMessage(), resultDto.getStrikeCount())));
     }
 }
