@@ -14,18 +14,12 @@ public class AnswerBalls {
         answerBalls = RandomNumberGenerator.generateRandomNumber(NUMBER_COUNT).stream()
                 .map(number -> new Ball(number))
                 .toList();
-
-        // log
-        for (Ball answerBall : answerBalls) {
-            System.out.print(answerBall.getBall() + " ");
-        }
-        System.out.println();
     }
 
     public int calculateStrike(List<Ball> userBalls) {
         int strikeCount = 0;
         for (int i = 0; i < userBalls.size(); i++) {
-            if (answerBalls.get(i).getBall() == userBalls.get(i).getBall()) {
+            if (answerBalls.get(i).isMatch(userBalls.get(i))) {
                 strikeCount++;
             }
         }
@@ -39,7 +33,7 @@ public class AnswerBalls {
                 if (i == j) {
                     continue;
                 }
-                if (answerBalls.get(i).getBall() == userBalls.get(j).getBall()) {
+                if (answerBalls.get(i).isMatch(userBalls.get(j))) {
                     ballCount++;
                 }
             }

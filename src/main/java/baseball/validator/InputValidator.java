@@ -2,6 +2,7 @@ package baseball.validator;
 
 import baseball.message.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,13 +15,12 @@ public class InputValidator {
         private static InputValidator inputValidator = new InputValidator();
     }
 
-
     public static InputValidator getInstance() {
         return InputValidatorHolder.inputValidator;
     }
 
     public List<Integer> validateInputNumbers(String inputNumbers) {
-        List<Integer> numbers;
+        List<Integer> numbers = new ArrayList<>();
         try {
             numbers = Arrays.stream(inputNumbers.split(""))
                     .map((input -> Integer.parseInt(input)))

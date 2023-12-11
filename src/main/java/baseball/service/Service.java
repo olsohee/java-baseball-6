@@ -25,10 +25,6 @@ public class Service {
         result = new Result(answerBalls.calculateStrike(userBalls.getUserBalls()), answerBalls.calculateBall(userBalls.getUserBalls()));
     }
 
-    public ResultDto getResultDto() {
-        return new ResultDto(result.getStrike(), result.getBall());
-    }
-
     public boolean isEnd() {
         if (result.isEnd()) {
             return true;
@@ -40,5 +36,9 @@ public class Service {
         answerBalls.clear();
         userBalls.clear();
         result.clear();
+    }
+
+    public ResultDto getResultDto() {
+        return new ResultDto(result.getStrike(), result.getBall());
     }
 }

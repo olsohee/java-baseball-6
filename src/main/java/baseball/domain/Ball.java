@@ -19,7 +19,10 @@ public class Ball {
         }
     }
 
-    public int getBall() {
-        return ball;
+    public boolean isMatch(Ball other) {
+        if (other.ball == ball) {
+            return true;
+        }
+        return false;
     }
 }

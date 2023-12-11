@@ -5,7 +5,6 @@ import baseball.message.OutputMessage;
 
 public class OutputView {
 
-
     private OutputView() {
     }
 

@@ -15,6 +15,14 @@ public class RandomNumberGenerator {
                 numbers.add(number);
             }
         }
+
+        // === log ===
+        for (Integer number : numbers) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+        // ===========
+
         return numbers;
     }
 }
