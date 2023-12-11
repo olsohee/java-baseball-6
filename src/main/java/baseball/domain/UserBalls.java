@@ -20,7 +20,6 @@ public class UserBalls {
     private void validate(List<Integer> numbers) {
         validateCount(numbers);
         validateDuplicated(numbers);
-        validateRange(numbers);
     }
 
     private void validateCount(List<Integer> numbers) {
@@ -35,14 +34,6 @@ public class UserBalls {
                 .toList();
         if (nonDuplicatedNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getErrorMessage());
-        }
-    }
-
-    private void validateRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 1 || number > 9) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getErrorMessage());
-            }
         }
     }
 
