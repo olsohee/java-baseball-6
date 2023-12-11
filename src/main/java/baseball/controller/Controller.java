@@ -13,8 +13,8 @@ public class Controller {
     private final InputValidator inputValidator;
     private final OutputView outputView;
     private final Service service;
-    boolean isEnd = false;
-    int retryCommand;
+    private boolean isEnd = false;
+    private int retryCommand;
 
     public Controller(InputView inputView, InputValidator inputValidator, OutputView outputView) {
         this.inputView = inputView;
@@ -31,10 +31,13 @@ public class Controller {
             isEnd = service.isEnd();
         } while (!isEnd);
 
+        end();
+    }
+
+    private void end() {
         outputView.printEndMessage();
         readRetry();
         if (retryCommand == 1) {
-            System.out.println("재시작");
             isEnd = false;
             service.retry();
             start();
