@@ -2,11 +2,12 @@ package baseball.domain;
 
 import baseball.generator.RandomNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnswerBalls {
 
-    private List<Ball> answerBalls;
+    private List<Ball> answerBalls = new ArrayList<>();
     private static final int NUMBER_COUNT = 3;
 
     public AnswerBalls() {
@@ -44,5 +45,9 @@ public class AnswerBalls {
             }
         }
         return ballCount;
+    }
+
+    public void clear() {
+        answerBalls = new ArrayList<>();
     }
 }

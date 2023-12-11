@@ -24,4 +24,8 @@ public class Result {
         }
         return false;
     }
+
+    public void clear() {
+        strike = ball = 0;
+    }
 }

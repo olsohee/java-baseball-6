@@ -2,11 +2,12 @@ package baseball.domain;
 
 import baseball.message.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserBalls {
 
-    private List<Ball> userBalls;
+    private List<Ball> userBalls = new ArrayList<>();
     private static final int NUMBER_COUNT = 3;
 
     public UserBalls(List<Integer> numbers) {
@@ -47,5 +48,9 @@ public class UserBalls {
 
     public List<Ball> getUserBalls() {
         return userBalls;
+    }
+
+    public void clear() {
+        userBalls = new ArrayList<>();
     }
 }

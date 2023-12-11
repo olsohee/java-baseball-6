@@ -35,4 +35,10 @@ public class Service {
         }
         return false;
     }
+
+    public void retry() {
+        answerBalls.clear();
+        userBalls.clear();
+        result.clear();
+    }
 }

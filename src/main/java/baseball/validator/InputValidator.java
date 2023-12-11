@@ -31,4 +31,15 @@ public class InputValidator {
         }
         return numbers;
     }
+
+    public int validateRetryCommand(String inputRetryCommand) {
+        try {
+            if (!inputRetryCommand.equals("1") && !inputRetryCommand.equals("2")) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getErrorMessage());
+            }
+            return Integer.parseInt(inputRetryCommand);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getErrorMessage());
+        }
+    }
 }

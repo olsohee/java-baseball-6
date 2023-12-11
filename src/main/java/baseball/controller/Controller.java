@@ -13,6 +13,7 @@ public class Controller {
     private final InputValidator inputValidator;
     private final OutputView outputView;
     private final Service service;
+    boolean isEnd = false;
 
     public Controller(InputView inputView, InputValidator inputValidator, OutputView outputView) {
         this.inputView = inputView;
@@ -24,13 +25,21 @@ public class Controller {
     public void start() {
         outputView.printStartMessage();
         service.createAnswerBalls();
-        boolean isEnd = false;
-        while (!isEnd) {
+        do {
             play();
             isEnd = service.isEnd();
-        }
+        } while (!isEnd);
+
         outputView.printEndMessage();
-//        inputView.readRetry();
+        if (readRetry() == 1) {
+            isEnd = false;
+            service.retry();
+            start();
+        }
+    }
+
+    private int readRetry() {
+        return inputValidator.validateRetryCommand(inputView.readRetry());
     }
 
     private void play() {
