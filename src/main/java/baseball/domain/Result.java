@@ -4,6 +4,7 @@ public class Result {
 
     private int strike;
     private int ball;
+    private static final int END_NUMBER = 3;
 
     public Result(int strike, int ball) {
         this.strike = strike;
@@ -19,7 +20,7 @@ public class Result {
     }
 
     public boolean isEnd() {
-        if (strike == 3) {
+        if (strike == END_NUMBER) {
             return true;
         }
         return false;
