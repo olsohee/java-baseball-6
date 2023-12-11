@@ -14,6 +14,7 @@ public class Controller {
     private final OutputView outputView;
     private final Service service;
     boolean isEnd = false;
+    int retryCommand;
 
     public Controller(InputView inputView, InputValidator inputValidator, OutputView outputView) {
         this.inputView = inputView;
@@ -31,15 +32,22 @@ public class Controller {
         } while (!isEnd);
 
         outputView.printEndMessage();
-        if (readRetry() == 1) {
+        readRetry();
+        if (retryCommand == 1) {
+            System.out.println("재시작");
             isEnd = false;
             service.retry();
             start();
         }
     }
 
-    private int readRetry() {
-        return inputValidator.validateRetryCommand(inputView.readRetry());
+    private void readRetry() {
+        try {
+            retryCommand = inputValidator.validateRetryCommand(inputView.readRetry());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            readRetry();
+        }
     }
 
     private void play() {
