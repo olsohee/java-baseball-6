@@ -28,4 +28,11 @@ public class Service {
     public ResultDto getResultDto() {
         return new ResultDto(result.getStrike(), result.getBall());
     }
+
+    public boolean isEnd() {
+        if (result.isEnd()) {
+            return true;
+        }
+        return false;
+    }
 }

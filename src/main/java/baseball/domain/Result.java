@@ -17,4 +17,11 @@ public class Result {
     public int getBall() {
         return ball;
     }
+
+    public boolean isEnd() {
+        if (strike == 3) {
+            return true;
+        }
+        return false;
+    }
 }

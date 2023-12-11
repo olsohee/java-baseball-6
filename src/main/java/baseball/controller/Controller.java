@@ -24,13 +24,24 @@ public class Controller {
     public void start() {
         outputView.printStartMessage();
         service.createAnswerBalls();
-        readNumber();
-        service.getResult();
-        outputView.printResult(service.getResultDto());
+        boolean isEnd = false;
+        while (!isEnd) {
+            play();
+            isEnd = service.isEnd();
+        }
+        outputView.printEndMessage();
+//        inputView.readRetry();
     }
 
-    private void readNumber() {
-        List<Integer> numbers = inputValidator.validateInputNumbers(inputView.readNumber());
-        service.createUserBalls(numbers);
+    private void play() {
+        try {
+            List<Integer> numbers = inputValidator.validateInputNumbers(inputView.readNumber());
+            service.createUserBalls(numbers);
+            service.getResult();
+            outputView.printResult(service.getResultDto());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            play();
+        }
     }
 }

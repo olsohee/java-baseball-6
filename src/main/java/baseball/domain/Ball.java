@@ -16,4 +16,8 @@ public class Ball {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ANSWER.getErrorMessage());
         }
     }
+
+    public int getBall() {
+        return ball;
+    }
 }

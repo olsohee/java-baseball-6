@@ -17,6 +17,10 @@ public class OutputView {
         return OutputViewHolder.outputView;
     }
 
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     public void printStartMessage() {
         System.out.println(OutputMessage.START_MESSAGE.getMessage());
     }
@@ -36,5 +40,9 @@ public class OutputView {
         }
         System.out.print(String.format(OutputMessage.BALL.getMessage(), resultDto.getBallCount()) + " ");
         System.out.println(String.format(String.format(OutputMessage.STRIKE.getMessage(), resultDto.getStrikeCount())));
+    }
+
+    public void printEndMessage() {
+        System.out.println(OutputMessage.FINAL_RESULT.getMessage());
     }
 }
