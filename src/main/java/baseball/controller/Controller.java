@@ -1,7 +1,7 @@
 package baseball.controller;
 
 import baseball.service.Service;
-import baseball.validator.InputValidator;
+import baseball.convertor.InputConvertor;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -10,15 +10,15 @@ import java.util.List;
 public class Controller {
 
     private final InputView inputView;
-    private final InputValidator inputValidator;
+    private final InputConvertor inputConvertor;
     private final OutputView outputView;
     private final Service service;
     private boolean isEnd = false;
     private GameCommand gameCommand = GameCommand.CONTINUE;
 
-    public Controller(InputView inputView, InputValidator inputValidator, OutputView outputView) {
+    public Controller(InputView inputView, InputConvertor inputConvertor, OutputView outputView) {
         this.inputView = inputView;
-        this.inputValidator = inputValidator;
+        this.inputConvertor = inputConvertor;
         this.outputView = outputView;
         this.service = new Service();
     }
@@ -48,7 +48,7 @@ public class Controller {
 
     private void play() {
         try {
-            List<Integer> numbers = inputValidator.validateInputNumbers(inputView.readNumber());
+            List<Integer> numbers = inputConvertor.convertToIntergerList(inputView.readNumber());
             service.createUserBalls(numbers);
             service.getResult();
             outputView.printResult(service.getResultDto());
