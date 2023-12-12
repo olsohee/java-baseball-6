@@ -14,7 +14,7 @@ public class Controller {
     private final OutputView outputView;
     private final Service service;
     private boolean isEnd = false;
-    private int retryCommand;
+    private GameCommand gameCommand = GameCommand.CONTINUE;
 
     public Controller(InputView inputView, InputValidator inputValidator, OutputView outputView) {
         this.inputView = inputView;
@@ -25,28 +25,21 @@ public class Controller {
 
     public void start() {
         outputView.printStartMessage();
-        service.createAnswerBalls();
-        do {
-            play();
-            isEnd = service.isEnd();
-        } while (!isEnd);
+        while (gameCommand == GameCommand.CONTINUE) {
+            service.createAnswerBalls();
+            do {
+                play();
+                isEnd = service.isEnd();
+            } while (!isEnd);
 
-        end();
-    }
-
-    private void end() {
-        outputView.printEndMessage();
-        readRetry();
-        if (retryCommand == 1) {
-            isEnd = false;
-            service.retry();
-            start();
+            outputView.printEndMessage();
+            readRetry();
         }
     }
 
     private void readRetry() {
         try {
-            retryCommand = inputValidator.validateRetryCommand(inputView.readRetry());
+            gameCommand = GameCommand.getGameCommand(inputView.readRetry().trim());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             readRetry();
