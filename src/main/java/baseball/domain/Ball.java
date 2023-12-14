@@ -2,11 +2,11 @@ package baseball.domain;
 
 import baseball.message.ErrorMessage;
 
+import static baseball.constant.BaseballInfo.*;
+
 public class Ball {
 
     private int ball;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 9;
 
     public Ball(int number) {
         validate(number);
@@ -14,7 +14,7 @@ public class Ball {
     }
 
     private void validate(int number) {
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+        if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ANSWER.getErrorMessage());
         }
     }

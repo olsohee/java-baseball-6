@@ -5,13 +5,14 @@ import baseball.generator.RandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static baseball.constant.BaseballInfo.BALL_COUNT;
+
 public class AnswerBalls {
 
     private List<Ball> answerBalls = new ArrayList<>();
-    private static final int NUMBER_COUNT = 3;
 
     public AnswerBalls() {
-        answerBalls = RandomNumberGenerator.generateRandomNumber(NUMBER_COUNT).stream()
+        answerBalls = RandomNumberGenerator.generateRandomNumber(BALL_COUNT.getValue()).stream()
                 .map(number -> new Ball(number))
                 .toList();
     }

@@ -8,19 +8,17 @@ import java.util.List;
 
 public class InputConvertor {
 
+    private static InputConvertor inputConvertor = new InputConvertor();
+
     private InputConvertor() {
     }
 
-    private static class InputConvertorHolder {
-        private static InputConvertor inputConvertor = new InputConvertor();
-    }
-
     public static InputConvertor getInstance() {
-        return InputConvertorHolder.inputConvertor;
+        return inputConvertor;
     }
 
     public List<Integer> convertToIntergerList(String inputNumbers) {
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> numbers;
         try {
             numbers = Arrays.stream(inputNumbers.split(""))
                     .map((input -> Integer.parseInt(input)))

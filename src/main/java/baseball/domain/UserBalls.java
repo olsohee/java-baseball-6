@@ -1,14 +1,16 @@
 package baseball.domain;
 
+import baseball.constant.BaseballInfo;
 import baseball.message.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static baseball.constant.BaseballInfo.BALL_COUNT;
+
 public class UserBalls {
 
-    private List<Ball> userBalls = new ArrayList<>();
-    private static final int NUMBER_COUNT = 3;
+    private List<Ball> userBalls;
 
     public UserBalls(List<Integer> numbers) {
         validate(numbers);
@@ -23,7 +25,7 @@ public class UserBalls {
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_COUNT) {
+        if (numbers.size() != BALL_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getErrorMessage());
         }
     }
@@ -37,11 +39,11 @@ public class UserBalls {
         }
     }
 
-    public List<Ball> getUserBalls() {
-        return userBalls;
-    }
-
     public void clear() {
         userBalls = new ArrayList<>();
+    }
+
+    public List<Ball> getUserBalls() {
+        return userBalls;
     }
 }

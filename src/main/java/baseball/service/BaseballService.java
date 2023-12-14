@@ -7,11 +7,19 @@ import baseball.dto.ResultDto;
 
 import java.util.List;
 
-public class Service {
+public class BaseballService {
 
+    private static BaseballService baseballService = new BaseballService();
     private AnswerBalls answerBalls;
     private UserBalls userBalls;
     private Result result;
+
+    private BaseballService() {
+    }
+
+    public static BaseballService getInstance() {
+        return baseballService;
+    }
 
     public void createAnswerBalls() {
         answerBalls = new AnswerBalls();
